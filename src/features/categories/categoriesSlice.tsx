@@ -17,8 +17,11 @@ export interface CategoriesTypes {
   description: string;
   title?: string;
   isEditing: boolean;
-  editCategoryId?: string;
   editError: boolean;
+  selectedCategory?: CategoryDetails;
+  categoryLoading: boolean;
+  categoryError: boolean;
+  editCategoryId?: string;
 }
 
 const initialState: CategoriesTypes = {
@@ -30,8 +33,10 @@ const initialState: CategoriesTypes = {
   description: "",
   title: "",
   isEditing: false,
-  editCategoryId: "",
   editError: false,
+  categoryLoading: false,
+  categoryError: false,
+  editCategoryId: "",
 };
 
 export const getCategories = createAsyncThunk(
@@ -72,23 +77,45 @@ export const createCategory = createAsyncThunk(
   }
 );
 
-// export const editCategory = createAsyncThunk(
-//   "categories/editCategory",
-//   async (id: string, thunkAPI: any) => {
-//     let editUrl = `https://www.wixapis.com/blog/v3/categories/${id}`;
-//     try {
-//       const resp = await axios.patch(editUrl, category, {
-//         headers: {
-//           Authorization: WIX_TEST_TOKEN,
-//         },
-//       });
-//       // thunkAPI.dispatch(clearValues());
-//       return resp.data;
-//     } catch (error) {
-//       thunkAPI.rejectWithValue("Error while deleting the category");
-//     }
-//   }
-// );
+export const getCategory = createAsyncThunk(
+  "categories/editInfo",
+  async (id: string, thunkAPI: any) => {
+    let getCategoryUrl = `https://www.wixapis.com/blog/v3/categories/${id}`;
+
+    try {
+      const resp = await axios.get(getCategoryUrl, {
+        headers: {
+          Authorization: WIX_TEST_TOKEN,
+        },
+      });
+      return resp.data.category;
+    } catch (error) {
+      thunkAPI.rejectWithValue("Error while getting news");
+    }
+  }
+);
+
+export const editCategory = createAsyncThunk(
+  "categories/editCategory",
+  async (value: CategoryDetails, thunkAPI: any) => {
+    let editUrl = `https://www.wixapis.com/blog/v3/categories/${value.id}`;
+    try {
+      const resp = await axios.patch(
+        editUrl,
+        { category: value },
+        {
+          headers: {
+            Authorization: WIX_TEST_TOKEN,
+          },
+        }
+      );
+      // thunkAPI.dispatch(clearValues());
+      return resp.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue("Error while deleting the category");
+    }
+  }
+);
 
 const categoriesSlice = createSlice({
   name: "categoriesSlice",
@@ -137,19 +164,32 @@ const categoriesSlice = createSlice({
       })
       .addCase(createCategory.rejected, (state, { payload }) => {
         state.isLoading = false;
-      });
+      })
 
-    // .addCase(editCategory.pending, (state) => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(editCategory.fulfilled, (state) => {
-    //   state.isLoading = false;
-    //   state.editError = false;
-    // })
-    // .addCase(editCategory.rejected, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.editError = true;
-    // });
+      .addCase(getCategory.pending, (state) => {
+        state.categoryLoading = true;
+      })
+      .addCase(getCategory.fulfilled, (state, { payload }) => {
+        state.categoryLoading = false;
+        state.selectedCategory = payload;
+        state.categoryError = false;
+      })
+      .addCase(getCategory.rejected, (state, { payload }) => {
+        state.categoryLoading = false;
+        state.categoryError = true;
+      })
+
+      .addCase(editCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editCategory.fulfilled, (state) => {
+        state.isLoading = false;
+        state.editError = false;
+      })
+      .addCase(editCategory.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.editError = true;
+      });
   },
 });
 

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout";
 import Categories from "./pages/Categories";
 import AddCategories from "./pages/dashboard/AddCategories";
+import EditCategory from "./pages/dashboard/EditCategory";
 import Home from "./pages/Home";
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/categories">
           <Route index element={<Categories />}></Route>
           <Route path="/categories/add" element={<AddCategories />}></Route>
+          <Route path="/categories/:id" element={<EditCategory />}></Route>
         </Route>
                 
       </Route>
