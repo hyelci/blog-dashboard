@@ -3,6 +3,7 @@ import { getCategories } from "../features/categories/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import CategoryCard from "../components/CategoryCard";
 import { Link } from "react-router-dom";
+import { Table } from "flowbite-react";
 
 export default function Categories() {
   const { categoriesResult } = useAppSelector((store) => store.categoriesSlice);
@@ -13,28 +14,27 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className="text-center m-5">
-      <Link
-        to="/categories/add"
-        className="pb-10px bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-      >
-        Create
-      </Link>
-
-      <table className="table-fixed px-3">
-        <thead>
-          <tr>
-            <th>Label</th>
-            <th>Description</th>
-            <th>title</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className="text-center m-20">
+      <Table className="table-fixed px-3">
+        <Table.Head>
+          <Table.Row>
+            <Table.HeadCell>Label</Table.HeadCell>
+            <Table.HeadCell>Description</Table.HeadCell>
+            <Table.HeadCell>Title</Table.HeadCell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
           {categoriesResult?.categories.map((category) => {
             return <CategoryCard category={category} />;
           })}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
+      <Link
+        to="/categories/add"
+        className=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      >
+        Create
+      </Link>
     </div>
   );
 }
