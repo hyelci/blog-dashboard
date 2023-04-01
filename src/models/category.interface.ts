@@ -6,7 +6,7 @@ export interface CategoryDetails {
 }
 
 export interface CreateCategoryRequest {
-  label: string;
+  label?: string;
   description?: string;
   title?: string;
 }
