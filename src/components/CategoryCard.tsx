@@ -15,20 +15,21 @@ const CategoryCard = ({ category }: CategoryCardProps): JSX.Element => {
       <Table.Cell>{category.label}</Table.Cell>
       <Table.Cell>{category.description}</Table.Cell>
       <Table.Cell>{category.title}</Table.Cell>
-      <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mx-5 my-2"
-        type="button"
-        onClick={() => dispatch(removeCategory(category.id))}
-      >
-        Delete
-      </button>
-
-      <Link
-        to={"/categories/" + category.id}
-        className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-      >
-        Edit
-      </Link>
+      <Table.Cell>
+        <button
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mx-5 my-2"
+          type="button"
+          onClick={() => dispatch(removeCategory(category.id))}
+        >
+          Delete
+        </button>
+        <Link
+          to={"/categories/" + category.id}
+          className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+        >
+          Edit
+        </Link>
+      </Table.Cell>
     </Table.Row>
   );
 };

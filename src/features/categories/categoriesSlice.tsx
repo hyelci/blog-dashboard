@@ -13,7 +13,6 @@ export interface CategoriesTypes {
   categoriesResult?: CategoriesResponse;
   isLoading: boolean;
   label?: string;
-
   description: string;
   title?: string;
   isEditing: boolean;
@@ -157,10 +156,6 @@ const categoriesSlice = createSlice({
       .addCase(createCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.categoriesError = false;
-        state.categoriesResult!.categories = [
-          ...state.categoriesResult!.categories,
-          payload,
-        ];
       })
       .addCase(createCategory.rejected, (state, { payload }) => {
         state.isLoading = false;

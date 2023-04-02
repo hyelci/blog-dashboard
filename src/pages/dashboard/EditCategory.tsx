@@ -23,7 +23,10 @@ const EditCategory = () => {
   }, [id]);
 
   useEffect(() => {
-    setValue(selectedCategory);
+    if (selectedCategory) {
+      const { displayPosition, ...rest } = selectedCategory;
+      setValue(rest);
+    }
   }, [selectedCategory]);
 
   const handleCategoryInput = (e: React.ChangeEvent<HTMLInputElement>) => {

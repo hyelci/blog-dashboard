@@ -1,6 +1,7 @@
 interface FormRowProps {
   type: string;
   name: string;
+  visibleLabel?: string;
   value?: number | string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -10,6 +11,7 @@ const FormRow = ({
   name,
   value,
   handleChange,
+  visibleLabel,
 }: FormRowProps): JSX.Element => {
   return (
     <div className="mb-4">
@@ -17,7 +19,7 @@ const FormRow = ({
         htmlFor={name}
         className="block text-gray-700 text-sm font-bold mb-2"
       >
-        {name}
+        {visibleLabel || name}
       </label>
       <input
         id={name}

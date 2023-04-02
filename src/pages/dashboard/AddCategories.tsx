@@ -8,6 +8,7 @@ const initialState: CreateCategoryRequest = {
   label: "",
   description: "",
   title: "",
+  displayPosition: 1,
 };
 
 const AddCategories = () => {
@@ -43,7 +44,8 @@ const AddCategories = () => {
 
           <FormRow
             type="text"
-            name="Label"
+            name="label"
+            visibleLabel="Label"
             value={value.label}
             handleChange={handleCategoryInput}
           />
@@ -51,14 +53,14 @@ const AddCategories = () => {
           {/* {post count} */}
           <FormRow
             type="text"
-            name="Description"
+            name="description"
             value={value.description}
             handleChange={handleCategoryInput}
           />
 
           <FormRow
             type="text"
-            name="Title"
+            name="title"
             value={value.title}
             handleChange={handleCategoryInput}
           />
