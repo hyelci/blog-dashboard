@@ -1,9 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import postsSlice from "../features/posts/postsSlice";
 import categoriesSlice from "../features/categories/categoriesSlice";
+import tagsSlice from "../features/tags/tagsSlice";
 
 export const store = configureStore({
   reducer: {
     categoriesSlice: categoriesSlice,
+    tagsSlice: tagsSlice,
+    postsSlice: postsSlice,
   },
 });
 

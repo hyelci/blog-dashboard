@@ -2,6 +2,7 @@ import {
   CategoriesResponse,
   CategoryDetails,
   CreateCategoryRequest,
+  TagsResponse,
 } from "../../models/category.interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";

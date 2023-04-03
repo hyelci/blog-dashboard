@@ -1,10 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout";
-import Categories from "./pages/Categories";
-import AddCategories from "./pages/dashboard/AddCategories";
-import EditCategory from "./pages/dashboard/EditCategory";
+import Categories from "./pages/dashboard/Categories/Categories";
+import AddCategories from "./pages/dashboard/Categories/AddCategories";
+import EditCategory from "./pages/dashboard/Categories/EditCategory";
+import AddTags from "./pages/dashboard/Tags/AddTags";
 import Home from "./pages/Home";
+import Tags from "./pages/Tags";
+import Posts from "./pages/Posts";
+import EditPost from "./pages/dashboard/Blogs/EditPost";
+import AddPost from "./pages/dashboard/Blogs/AddPost";
 
 
 function App() {
@@ -17,6 +22,17 @@ function App() {
           <Route index element={<Categories />}></Route>
           <Route path="/categories/add" element={<AddCategories />}></Route>
           <Route path="/categories/:id" element={<EditCategory />}></Route>
+
+        </Route>
+        <Route path="/tags">
+          <Route index element={<Tags />}></Route>
+          <Route path="/tags/add" element={<AddTags />}></Route>
+        </Route>
+
+        <Route path="/blogs">
+          <Route index element={<Posts />}></Route>
+          <Route path="/blogs/add" element={<AddPost />}></Route>
+          <Route path="/blogs/:id" element={<EditPost />}></Route>
         </Route>
                 
       </Route>

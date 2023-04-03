@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   editCategory,
   getCategory,
-} from "../../features/categories/categoriesSlice";
-import FormRow from "../../components/FormRow";
-import { CategoryDetails } from "../../models/category.interface";
+} from "../../../features/categories/categoriesSlice";
+import FormRow from "../../../components/FormRow";
+import { CategoryDetails } from "../../../models/category.interface";
 
 const EditCategory = () => {
   const { selectedCategory } = useAppSelector((store) => store.categoriesSlice);
