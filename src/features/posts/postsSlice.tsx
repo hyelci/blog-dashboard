@@ -70,7 +70,7 @@ export const createPost = createAsyncThunk(
 export const getPost = createAsyncThunk(
   "posts/getPost",
   async (id: string, thunkAPI: any) => {
-    let getPostURL = `https://www.wixapis.com/blog/v3/draft-posts/${id}`;
+    let getPostURL = `https://www.wixapis.com/blog/v3/draft-posts/${id}?fieldsets=CONTENT`;
     try {
       const resp = await axios.get(getPostURL, {
         headers: {

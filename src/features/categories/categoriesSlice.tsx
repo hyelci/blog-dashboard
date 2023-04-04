@@ -117,6 +117,26 @@ export const editCategory = createAsyncThunk(
   }
 );
 
+export const deleteCategory = createAsyncThunk(
+  "categoriess/deleteCatgeory",
+  async (id: string, thunkAPI: any) => {
+    let deleteURL = `https://www.wixapis.com/blog/v3/categories/${id}
+
+`;
+    try {
+      const resp = await axios.delete(deleteURL, {
+        headers: {
+          Authorization: WIX_TEST_TOKEN,
+        },
+      });
+      thunkAPI.dispatch(getCategories());
+      return resp.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue("Error while deleting the category");
+    }
+  }
+);
+
 const categoriesSlice = createSlice({
   name: "categoriesSlice",
   initialState,

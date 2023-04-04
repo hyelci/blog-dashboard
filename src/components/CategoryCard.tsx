@@ -1,6 +1,9 @@
 import { CategoryDetails } from "../models/category.interface";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { removeCategory } from "../features/categories/categoriesSlice";
+import {
+  deleteCategory,
+  removeCategory,
+} from "../features/categories/categoriesSlice";
 import { Link } from "react-router-dom";
 import { Table } from "flowbite-react";
 
@@ -19,7 +22,7 @@ const CategoryCard = ({ category }: CategoryCardProps): JSX.Element => {
         <button
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mx-5 my-2"
           type="button"
-          onClick={() => dispatch(removeCategory(category.id))}
+          onClick={() => dispatch(deleteCategory(category.id))}
         >
           Delete
         </button>

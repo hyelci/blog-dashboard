@@ -43,6 +43,17 @@ export interface BlogsResponse {
   draftPosts: PostDetails[];
 }
 
+interface Block {
+  key?: string;
+  text: string;
+  type: string;
+}
+
 export interface CreatePostRequest {
   title?: string;
+  categoryIds: string[];
+  tagIds: string[];
+  content: {
+    blocks: Block[];
+  };
 }
