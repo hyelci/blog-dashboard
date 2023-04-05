@@ -28,6 +28,12 @@ const PostCard = ({ post }: PostCardProps): JSX.Element => {
         >
           Edit
         </Link>
+        <Link
+          to={`/blogs/view/${post.id}`}
+          className="mx-2 font-medium text-blue-600 hover:underline dark:text-blue-500"
+        >
+          View
+        </Link>
       </Table.Cell>
     </Table.Row>
   );

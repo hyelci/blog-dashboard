@@ -10,6 +10,7 @@ import Tags from "./pages/Tags";
 import Posts from "./pages/Posts";
 import EditPost from "./pages/dashboard/Blogs/EditPost";
 import AddPost from "./pages/dashboard/Blogs/AddPost";
+import ViewCard from "./pages/ViewCard";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route index element={<Posts />}></Route>
           <Route path="/blogs/add" element={<AddPost />}></Route>
           <Route path="/blogs/:id" element={<EditPost />}></Route>
+          <Route path="/blogs/view/:id" element={<ViewCard />}></Route>
         </Route>
                 
       </Route>

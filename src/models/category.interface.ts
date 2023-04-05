@@ -34,9 +34,17 @@ export interface CreateTagRequest {
   language?: string;
 }
 
+export interface img {
+  image: { url?: string };
+}
+
 export interface PostDetails {
   id: string;
   title?: string;
+  coverMedia?: img;
+  content: {
+    blocks: Block[];
+  };
 }
 
 export interface BlogsResponse {
